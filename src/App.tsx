@@ -1,20 +1,19 @@
-import { Box, Heading } from "@chakra-ui/react";
-import { db } from "./firebase";
-import { collection, getDocs } from "firebase/firestore";
-
-const readData = async () => {
-  const querySnapshot = await getDocs(collection(db, "shopping-list-db"));
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
-  });
-};
+import { Box, Button, Heading } from "@chakra-ui/react";
+import { signIn } from "./api/auth";
+import { readShoppingListData } from "./api/shoppingList";
 
 function App() {
-  readData();
+
+  const handleLogin = () => {
+    signIn().then((user) => console.log(user));
+  }
 
   return (
     <Box w="100%" textAlign="center">
       <Heading>React + Chakra UI</Heading>
+      <Button onClick={() => handleLogin()}>SIGN IN</Button>
+      <Button onClick={() => 
+  readShoppingListData().then((data) => data?.forEach((item) => console.log(item.id, item.data())))}>READ DATA</Button>
     </Box>
   );
 }
