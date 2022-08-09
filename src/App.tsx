@@ -1,19 +1,24 @@
-import { Box, Button, Heading } from "@chakra-ui/react";
-import { signIn } from "./api/auth";
-import { readShoppingListData } from "./api/shoppingList";
+import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { signIn } from "./features/common/api/auth";
+import ShoppingList from "./features/shoppingList/components";
+import Task from "./features/task/components";
+import Plant from "./features/plant/components";
 
 function App() {
-
   const handleLogin = () => {
     signIn().then((user) => console.log(user));
-  }
+  };
 
   return (
     <Box w="100%" textAlign="center">
-      <Heading>React + Chakra UI</Heading>
+      <Heading>legendary-robot</Heading>
       <Button onClick={() => handleLogin()}>SIGN IN</Button>
-      <Button onClick={() => 
-  readShoppingListData().then((data) => data?.forEach((item) => console.log(item.id, item.data())))}>READ DATA</Button>
+
+      <Flex justifyContent="space-between" mx="2%">
+        <ShoppingList />
+        <Task />
+        <Plant />
+      </Flex>
     </Box>
   );
 }

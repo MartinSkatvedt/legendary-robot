@@ -1,5 +1,5 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { googleProvider } from "../firebase";
+import { googleProvider } from "../../../firebase";
 
 export const signIn = async () => {
   const auth = getAuth();
@@ -11,11 +11,11 @@ export const signIn = async () => {
     const token = credential.accessToken;
     const user = signInResult.user;
     return {
-        token,
-        user
-    }
-} catch (error) {
-    console.log(error)
-    return null
+      token,
+      user,
+    };
+  } catch (error) {
+    console.log(error);
+    return null;
   }
 };
