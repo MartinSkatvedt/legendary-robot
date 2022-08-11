@@ -12,10 +12,11 @@ const ComponentWrapper: FC<ComponentWrapperProps> = (
   const { title, children } = props;
   return (
     <Box
-      w="32%"
+      w="100%"
       border="2px solid white"
       borderRadius="5px"
       px="3%"
+      mx="1%"
       position="relative"
     >
       <Heading as="h3">{title}</Heading>

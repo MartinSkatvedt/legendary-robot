@@ -3,26 +3,26 @@ import { Box, Button, Checkbox, useDisclosure } from "@chakra-ui/react";
 import ComponentWrapper from "../../common/components/ComponentWrapper";
 import useShoppingListData from "../api/useShoppingListData";
 import ShoppingListModal from "./ShoppingListModal";
+import CommonSpinner from "../../common/components/CommonSpinner";
 
 const ShoppingList: FC = () => {
   const { data: shoppingListData, isLoading: shoppingListIsLoading } =
     useShoppingListData();
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  if (!shoppingListData || shoppingListIsLoading) {
-    return <Box>Loading...</Box>;
-  }
-
-  const ShoppingListElements = shoppingListData.map((item) => (
-    <Box key={item.id}>
-      <Checkbox>{item.data.itemName}</Checkbox>
-    </Box>
-  ));
 
   return (
     <ComponentWrapper title={"Handleliste"}>
-      {ShoppingListElements}
+      {!shoppingListData || shoppingListIsLoading ? (
+        <CommonSpinner />
+      ) : (
+        shoppingListData.map((item) => (
+          <Box key={item.id}>
+            <Checkbox size="lg" my="5px">
+              {item.data.itemName}
+            </Checkbox>
+          </Box>
+        ))
+      )}
 
       <Button
         position="absolute"

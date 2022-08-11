@@ -1,8 +1,7 @@
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { signIn } from "./features/common/api/auth";
 import ShoppingList from "./features/shoppingList/components";
 import Task from "./features/task/components";
-import Plant from "./features/plant/components";
 import useUser from "./features/common/api/useUser";
 
 function App() {
@@ -37,7 +36,7 @@ function App() {
     >
       <ShoppingList />
       <Task />
-      <Plant />
+      {/* <Plant /> */}
     </Flex>
   );
 }
