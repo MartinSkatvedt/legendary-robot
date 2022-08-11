@@ -2,7 +2,7 @@ import { getDocs } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { useQuery } from "@tanstack/react-query";
 import { collection } from "firebase/firestore";
-import { TASK_COLLECTION_NAME } from "./task";
+import { TASK_COLLECTION_NAME } from "./useAddTask";
 
 const useTaskData = () => {
   return useQuery(["taskQuery"], async () => {

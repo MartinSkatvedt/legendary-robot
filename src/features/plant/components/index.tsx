@@ -13,12 +13,7 @@ const Plant: FC = () => {
   const PlantElements = plantData.map((item) => (
     <Box key={item.id}>{item.data.plantName}</Box>
   ));
-  return (
-    <ComponentWrapper>
-      <Heading as="h3">Planter</Heading>
-      {PlantElements}
-    </ComponentWrapper>
-  );
+  return <ComponentWrapper title={"Planter"}>{PlantElements}</ComponentWrapper>;
 };
 
 export default Plant;

@@ -3,23 +3,42 @@ import { signIn } from "./features/common/api/auth";
 import ShoppingList from "./features/shoppingList/components";
 import Task from "./features/task/components";
 import Plant from "./features/plant/components";
+import useUser from "./features/common/api/useUser";
 
 function App() {
-  const handleLogin = () => {
-    signIn().then((user) => console.log(user));
-  };
+  const user = useUser();
+
+  if (!user) {
+    return (
+      <Flex
+        w="100%"
+        textAlign="center"
+        background="teal"
+        h="100vh"
+        color="white"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Button onClick={() => signIn()} colorScheme="teal" w="40%" h="15%">
+          Logg inn
+        </Button>
+      </Flex>
+    );
+  }
 
   return (
-    <Box w="100%" textAlign="center">
-      <Heading>legendary-robot</Heading>
-      <Button onClick={() => handleLogin()}>SIGN IN</Button>
-
-      <Flex justifyContent="space-between" mx="2%">
-        <ShoppingList />
-        <Task />
-        <Plant />
-      </Flex>
-    </Box>
+    <Flex
+      justifyContent="space-between"
+      w="100%"
+      background="teal"
+      h="100vh"
+      color="white"
+      p="1%"
+    >
+      <ShoppingList />
+      <Task />
+      <Plant />
+    </Flex>
   );
 }
 
